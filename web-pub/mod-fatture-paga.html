@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invio dati pagamento fattura</title>
+<style>
+* { box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background:#f4f6f8; margin:0; padding:30px 15px; color:#222; }
+.container { max-width:650px; margin:auto; background:#fff; padding:30px; border-radius:14px; box-shadow:0 4px 18px rgba(0,0,0,.08); }
+h1 { margin-top:0; text-align:center; }
+.subtitle { text-align:center; color:#666; margin-bottom:30px; }
+label { display:block; margin-top:18px; margin-bottom:6px; font-weight:bold; }
+input, textarea { width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; font-size:16px; }
+textarea { min-height:90px; resize:vertical; }
+.buttons { display:flex; gap:10px; margin-top:25px; }
+button { flex:1; border:none; padding:14px; border-radius:8px; font-size:16px; font-weight:bold; cursor:pointer; }
+.whatsapp { background:#25D366; color:white; }
+.email { background:#246bfd; color:white; }
+button:hover { opacity:.9; }
+.note { margin-top:25px; padding:12px; background:#f5f7fa; border-radius:8px; font-size:13px; color:#555; }
+@media (max-width:600px) { .buttons { flex-direction:column; } }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>💳 Pagamento fattura</h1>
+<div class="subtitle">Compila i dati e invia al cliente le informazioni necessarie per il pagamento.</div>
+
+<label for="cliente">Cliente / Intestatario fattura</label>
+<input type="text" id="cliente" placeholder="Es. Mario Rossi">
+
+<label for="numeroFattura">Numero fattura</label>
+<input type="text" id="numeroFattura" placeholder="Es. 25/2026">
+
+<label for="dataFattura">Data fattura</label>
+<input type="date" id="dataFattura">
+
+<label for="descrizione">Descrizione prestazione</label>
+<textarea id="descrizione" placeholder="Es. Progettazione impianto elettrico"></textarea>
+
+<label for="totale">Totale da pagare (€)</label>
+<input type="number" id="totale" step="0.01" min="0" placeholder="Es. 250,00">
+
+<label for="scadenza">Scadenza pagamento</label>
+<input type="date" id="scadenza">
+
+<label for="beneficiario">Beneficiario</label>
+<input type="text" id="beneficiario" placeholder="Es. Studio Tecnico ...">
+
+<label for="iban">IBAN</label>
+<input type="text" id="iban" placeholder="IT00 X000 0000 0000 0000 0000 000">
+
+<label for="causale">Causale bonifico</label>
+<input type="text" id="causale" placeholder="Es. Saldo fattura n. 25/2026">
+
+<label for="whatsapp">Numero WhatsApp cliente</label>
+<input type="tel" id="whatsapp" placeholder="Es. 393331234567">
+
+<label for="email">Email cliente</label>
+<input type="email" id="email" placeholder="cliente@email.it">
+
+<div class="buttons">
+<button class="whatsapp" onclick="inviaWhatsApp()">📱 Invia WhatsApp</button>
+<button class="email" onclick="inviaEmail()">✉️ Invia Email</button>
+</div>
+
+<div class="note">Nel messaggio pronto da inviare viene lasciata una riga completamente vuota tra ogni voce.</div>
+</div>
+
+<script>
+function formattaData(data) {
+    if (!data) return "";
+    const parti = data.split("-");
+    return parti[2] + "/" + parti[1] + "/" + parti[0];
+}
+
+function formattaImporto(importo) {
+    if (!importo) return "";
+    return Number(importo).toLocaleString("it-IT", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+function generaMessaggio() {
+    const cliente = document.getElementById("cliente").value;
+    const numeroFattura = document.getElementById("numeroFattura").value;
+    const dataFattura = formattaData(document.getElementById("dataFattura").value);
+    const descrizione = document.getElementById("descrizione").value;
+    const totale = formattaImporto(document.getElementById("totale").value);
+    const scadenza = formattaData(document.getElementById("scadenza").value);
+    const beneficiario = document.getElementById("beneficiario").value;
+    const iban = document.getElementById("iban").value;
+    const causale = document.getElementById("causale").value;
+
+    return `Gentile ${cliente},\n\ndi seguito i dati per il pagamento della fattura.\n\n📄 Numero fattura: ${numeroFattura}\n\n📅 Data fattura: ${dataFattura}\n\n📝 Descrizione: ${descrizione}\n\n💶 Totale da pagare: € ${totale}\n\n⏳ Scadenza pagamento: ${scadenza}\n\n👤 Beneficiario: ${beneficiario}\n\n🏦 IBAN: ${iban}\n\n✏️ Causale bonifico: ${causale}\n\nGrazie.`;
+}
+
+function inviaWhatsApp() {
+    const numero = document.getElementById("whatsapp").value.replace(/\D/g, "");
+    if (!numero) {
+        alert("Inserisci il numero WhatsApp del cliente.");
+        return;
+    }
+    const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(generaMessaggio());
+    window.open(url, "_blank");
+}
+
+function inviaEmail() {
+    const email = document.getElementById("email").value;
+    if (!email) {
+        alert("Inserisci l'indirizzo email del cliente.");
+        return;
+    }
+    const numeroFattura = document.getElementById("numeroFattura").value;
+    const oggetto = "Dati pagamento fattura n. " + numeroFattura;
+    const url = "mailto:" + email + "?subject=" + encodeURIComponent(oggetto) + "&body=" + encodeURIComponent(generaMessaggio());
+    window.location.href = url;
+}
+</script>
+</body>
+</html>
