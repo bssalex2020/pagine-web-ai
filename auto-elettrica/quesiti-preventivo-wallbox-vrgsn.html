@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VERONA-GSN: Richiedi un preventivo Wallbox</title>
+<meta name="description" content="Richiedi un preventivo per la tua wallbox e proponi le disponibilità per un sopralluogo gratuito e senza impegno.">
+<!-- PAGINA AUTONOMA: aprila direttamente in un browser o caricala sul tuo sito.
+Configura NUMERO_WHATSAPP ed EMAIL_DESTINATARIO nello script in fondo.
+Per modificare una domanda aggiorna il testo della label e il suo data-label.
+Mantieni i name delle domande autorimessa e sopralluogo per il funzionamento.
+Non servono librerie o altri file. -->
+<style>
+body{margin:0;padding:24px;background:#eef3f6;}@media(max-width:560px){body{padding:12px;}}
+
+.wb-request { --wb-green:#087b70; font:16px/1.5 Arial,Helvetica,sans-serif; color:#17343d; max-width:860px; margin:24px auto; border:1px solid #d7e4e8; background:#fff; border-radius:18px; overflow:hidden; }
+.wb-request,.wb-request * {box-sizing:border-box}
+.wb-request [hidden]{display:none!important}
+.wb-request .wb-header{background:#133a46;color:#fff;padding:32px}
+.wb-request .wb-eyebrow{color:#9cddd1;font-size:12px;letter-spacing:1.5px;font-weight:bold}
+.wb-request h2{color:inherit;font-size:32px;line-height:1.2;margin:14px 0}
+.wb-request .wb-header p{margin:0;max-width:600px;color:#d9e8ec}
+.wb-request form{margin:0;padding:0}
+.wb-request .wb-section{padding:28px 32px;border-bottom:1px solid #e0e9ec}
+.wb-request h3{font-size:21px;display:flex;gap:12px;align-items:center;margin:0;color:#17343d;line-height:1.3}
+.wb-request h3 span{display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;background:#e4f5f1;color:#087b70;border-radius:50%;font-size:14px}
+.wb-request .wb-hint{font-size:14px;color:#60747d;margin:12px 0 22px}
+.wb-request .wb-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wb-request .wb-field{margin:16px 0;min-width:0}
+.wb-request .wb-field label{display:block;font-size:14px;font-weight:bold;color:#234650}
+.wb-request input:not([type=checkbox]),.wb-request select,.wb-request textarea{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid #bfcfd5;border-radius:8px;font:16px Arial,sans-serif;line-height:1.5;color:#17343d;background:#fff}
+.wb-request textarea{resize:vertical}
+.wb-request small{display:block;color:#637780;font-size:13px;margin-top:7px}
+.wb-request .wb-required{color:#087b70}
+.wb-request .wb-sub,.wb-request .wb-visit{background:#f1f7f8;padding:20px;border-radius:10px;margin:20px 0 0}
+.wb-request .wb-sub>p{margin:0;font-weight:bold}
+.wb-request .wb-options{margin:20px 0;padding:14px 18px;border:1px solid #d7e4e8;border-radius:8px}
+.wb-request .wb-options legend{font-size:14px;font-weight:bold;padding:0 6px}
+.wb-request .wb-options label{display:inline-flex;align-items:baseline;gap:8px;margin:10px 20px 10px 0;font-size:16px}
+.wb-request input[type=checkbox]{accent-color:#087b70;width:auto}
+.wb-request h4{font-size:17px;margin:0 0 10px;color:#17343d}
+.wb-request .wb-visit>p{font-size:14px;color:#526d76}
+.wb-request .wb-slot{padding-top:18px;margin-top:18px;border-top:1px solid #d5e2e6}
+.wb-request .wb-slot h4{font-size:14px;margin:0}
+.wb-request .wb-footer{padding:28px 32px}
+.wb-request .wb-buttons{display:flex;gap:14px;flex-wrap:wrap}
+.wb-request button{flex:1 1 220px;padding:15px 20px;border:0;border-radius:8px;background:#087b70;color:#fff;font:bold 16px Arial,sans-serif;cursor:pointer}
+.wb-request button[data-email]{background:#234e75}
+.wb-request .wb-footer p{font-size:13px;color:#60747d}
+.wb-request [data-status]{color:#a32121!important;font-size:14px!important}
+.wb-request :focus-visible{outline:3px solid #87d7c8;outline-offset:3px}
+@media(max-width:560px){.wb-request .wb-grid{grid-template-columns:1fr;gap:0}.wb-request .wb-header,.wb-request .wb-section,.wb-request .wb-footer{padding:22px 18px}.wb-request h2{font-size:27px}.wb-request .wb-visit{padding:14px}}
+</style>
+</head>
+<body>
+<section class="wb-request">
+<header class="wb-header"><div class="wb-eyebrow">RICARICA ELETTRICA · RICHIESTA PREVENTIVO</div><h2>VERONA-GSN: La tua wallbox, su misura.</h2><p>Raccontaci dove vuoi ricaricare. Queste informazioni ci aiuteranno a valutare la soluzione adatta al tuo impianto.</p></header>
+<form><section class="wb-section"><h3><span>1</span>I tuoi recapiti</h3><p class="wb-hint">Ti contatteremo per valutare la richiesta. I campi con * sono obbligatori.</p><div class="wb-field"><label>Nome e cognome <span class="wb-required">*</span><input type="text" name="nome" required autocomplete="name" maxlength="120" data-label="Nome e cognome"></label></div><div class="wb-grid"><div class="wb-field"><label>Numero di cellulare <span class="wb-required">*</span><input type="tel" name="telefono" required autocomplete="tel" maxlength="30" data-label="Numero di cellulare"></label></div><div class="wb-field"><label>Email <span class="wb-required">*</span><input type="email" name="email" required autocomplete="email" maxlength="150" data-label="Email"></label></div></div></section><section class="wb-section"><h3><span>2</span>Dove vuoi installarla?</h3><p class="wb-hint">Indica l’indirizzo e il tipo di spazio disponibile.</p><div class="wb-field"><label>Via e numero civico <span class="wb-required">*</span><input type="text" name="indirizzo" required autocomplete="street-address" maxlength="180" data-label="Via e numero civico"></label></div><div class="wb-grid"><div class="wb-field"><label>Città <span class="wb-required">*</span><input type="text" name="citta" required autocomplete="address-level2" maxlength="100" data-label="Città"></label></div><div class="wb-field"><label>CAP <span class="wb-required">*</span><input type="text" name="cap" required autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" data-label="CAP"></label></div></div><div class="wb-field"><label>Tipo di immobile <span class="wb-required">*</span><select name="immobile" data-label="Tipo di immobile" required><option value="">Seleziona</option><option>Casa singola (unifamiliare o bifamiliare)</option><option>Condominio</option><option>Azienda (ufficio, negozio o capannone)</option></select></label></div><div class="wb-field"><label>Garage o posto auto <span class="wb-required">*</span><select name="parcheggio" data-label="Garage o posto auto" required><option value="">Seleziona</option><option>Box privato in autorimessa</option><option>Posto auto in autorimessa</option><option>Garage singolo esterno</option><option>Posto auto all’aperto</option></select></label></div><div data-autorimessa hidden class="wb-sub"><p>Qualche dettaglio sull’autorimessa</p><div class="wb-field"><label>L’autorimessa supera i 300 m²?<select name="superficie" data-label="L’autorimessa supera i 300 m²?" ><option value="">Seleziona</option><option>Sì</option><option>No</option><option>Non so</option></select></label></div><div class="wb-field"><label>Sono presenti più di 9 box o posti auto?<select name="posti" data-label="Sono presenti più di 9 box o posti auto?" ><option value="">Seleziona</option><option>Sì</option><option>No</option><option>Non so</option></select></label></div></div></section><section class="wb-section"><h3><span>3</span>Il tuo impianto</h3><p class="wb-hint">Se non conosci un dato, scegli “Non so” o lascia vuoto il campo tecnico.</p><div class="wb-grid"><div class="wb-field"><label>Tensione del contatore<select name="tensione" data-label="Tensione del contatore" ><option value="">Seleziona</option><option>Monofase 230 V</option><option>Bifase</option><option>Trifase 400 V</option><option>Non so</option></select></label></div><div class="wb-field"><label>Potenza attuale del contatore (kW)<input type="number" name="potenza"  min="0.1" step="0.1" placeholder="Es. 6" data-label="Potenza attuale del contatore (kW)"></label></div></div><div class="wb-grid"><div class="wb-field"><label>È presente un impianto fotovoltaico?<select name="fotovoltaico" data-label="È presente un impianto fotovoltaico?" ><option value="">Seleziona</option><option>Sì</option><option>No</option><option>Previsto</option><option>Non so</option></select></label></div><div class="wb-field"><label>È presente un accumulo Tesla Powerwall?<select name="powerwall" data-label="È presente un accumulo Tesla Powerwall?" ><option value="">Seleziona</option><option>Sì</option><option>No</option><option>Previsto</option><option>Non so</option></select></label></div></div><div class="wb-field"><label>Distanza tra contatore / quadro e punto di ricarica<select name="distanza" data-label="Distanza tra contatore / quadro e punto di ricarica" ><option value="">Seleziona</option><option>Entro 10 m</option><option>Da 10 a 20 m</option><option>Da 20 a 30 m</option><option>Oltre 30 m</option><option>Non so</option></select></label></div></section><section class="wb-section"><h3><span>4</span>La wallbox e l’auto</h3><p class="wb-hint">Puoi lasciare la scelta della soluzione al tecnico.</p><div class="wb-field"><label>Tensione e potenza wallbox preferita<select name="wallbox" data-label="Tensione e potenza wallbox preferita" ><option value="">Seleziona</option><option>Monofase 230 V – 7,4 kW</option><option>Trifase 400 V – 11 kW</option><option>Trifase 400 V – 22 kW</option><option>Da valutare con il tecnico</option></select></label></div><div class="wb-field"><label>Vuoi una wallbox connessa a internet?<select name="internet" data-label="Vuoi una wallbox connessa a internet?" ><option value="">Seleziona</option><option>Sì</option><option>No</option><option>Da valutare</option></select></label></div><fieldset class="wb-options"><legend>Connessioni disponibili</legend><label><input type="checkbox" name="connessioni" data-label="Connessioni disponibili" value="Ethernet"> Ethernet</label><label><input type="checkbox" name="connessioni" data-label="Connessioni disponibili" value="WiFi"> WiFi</label><label><input type="checkbox" name="connessioni" data-label="Connessioni disponibili" value="Non so / da verificare"> Non so / da verificare</label></fieldset><div class="wb-field"><label>Attivazione protetta della ricarica<select name="protezione" data-label="Attivazione protetta della ricarica" ><option value="">Seleziona</option><option>App</option><option>RFID</option><option>App e RFID</option><option>Non necessaria</option><option>Da valutare</option></select></label></div><div class="wb-field"><label>Tipo di auto<select name="auto" data-label="Tipo di auto" ><option value="">Seleziona</option><option>Elettrica</option><option>Ibrida plug-in</option><option>Non ancora scelta</option></select></label></div></section><section class="wb-section"><h3><span>5</span>Budget, note e sopralluogo</h3><p class="wb-hint">Raccontaci eventuali esigenze particolari.</p><div class="wb-field"><label>Budget indicativo, IVA inclusa (€)<input type="number" name="budget"  min="0" step="50" data-label="Budget indicativo, IVA inclusa (€)"></label></div><div class="wb-field"><label>Altre richieste o note<textarea name="note" data-label="Note" rows="4" maxlength="1200" placeholder="Es. informazioni su agevolazioni o sperimentazione ARERA/GSE per la ricarica dei veicoli elettrici."></textarea></label><small>Le eventuali agevolazioni saranno verificate in base alle condizioni in vigore.</small></div><div class="wb-visit"><h4>Sopralluogo senza impegno</h4><p>Se necessario, concorderemo un sopralluogo con un tecnico specializzato. Puoi proporre fino a tre disponibilità: l’appuntamento sarà confermato dopo il contatto.</p><div class="wb-slot"><h4>Disponibilità 1</h4><div class="wb-grid"><div class="wb-field"><label>Data<input type="date" name="data1"  data-slot="1" data-label="Data"></label></div><div class="wb-field"><label>Fascia oraria<select name="ora1" data-label="Fascia oraria" ><option value="">Seleziona</option><option>09:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option><option>18:00–20:00</option></select></label></div></div></div><div class="wb-slot"><h4>Disponibilità 2</h4><div class="wb-grid"><div class="wb-field"><label>Data<input type="date" name="data2"  data-slot="2" data-label="Data"></label></div><div class="wb-field"><label>Fascia oraria<select name="ora2" data-label="Fascia oraria" ><option value="">Seleziona</option><option>09:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option><option>18:00–20:00</option></select></label></div></div></div><div class="wb-slot"><h4>Disponibilità 3</h4><div class="wb-grid"><div class="wb-field"><label>Data<input type="date" name="data3"  data-slot="3" data-label="Data"></label></div><div class="wb-field"><label>Fascia oraria<select name="ora3" data-label="Fascia oraria" ><option value="">Seleziona</option><option>09:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option><option>18:00–20:00</option></select></label></div></div></div></div></section><div class="wb-footer"><div class="wb-buttons"><button type="button" data-whatsapp>Continua su WhatsApp</button><button type="button" data-email>Continua via email</button></div><p>Si aprirà un messaggio con le tue risposte. Controllalo e premi Invia. Per l’email è necessario un servizio di posta configurato sul dispositivo.</p><p>Le risposte non vengono salvate da questa pagina. Non inserire dati sensibili nelle note.</p><p data-status role="alert"></p></div></form></section>
+<script>
+(function(){
+  // CONFIGURAZIONE: inserisci qui i recapiti dello studio, mantenendo le virgolette.
+  // WhatsApp: prefisso internazionale e numero, solo cifre, senza + o spazi.
+  const NUMERO_WHATSAPP = "3456287120";
+  const EMAIL_DESTINATARIO = "info@verona-gsn.it";
+  const OGGETTO = "VERONA-GSN: Richiesta preventivo installazione Wallbox";
+  // Mantieni questo script subito dopo la section del modulo.
+  const root=document.currentScript.previousElementSibling;
+  const form=root.querySelector('form'),status=root.querySelector('[data-status]');
+  form.addEventListener('submit',e=>e.preventDefault());
+  const parking=form.elements.parcheggio;
+  function garage(){const shared=parking.value.includes('autorimessa');root.querySelector('[data-autorimessa]').hidden=!shared;root.querySelectorAll('[data-autorimessa] select').forEach(el=>el.disabled=!shared);}
+  parking.addEventListener('change',garage);garage();
+  const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  root.querySelectorAll('input[type=date]').forEach(el=>el.min=today);
+  // Raccoglie automaticamente i campi. Modifica data-label per il testo nel messaggio.
+  function message(){
+    for(let i=1;i<=3;i++){
+      const date=form.elements['data'+i],time=form.elements['ora'+i];
+      date.setCustomValidity(!date.value && time.value?'Scegli la data per questa disponibilità.':'');
+      time.setCustomValidity(date.value && !time.value?'Scegli la fascia oraria per questa disponibilità.':'');
+    }
+    if(!form.reportValidity())return null;
+    const lines=[],seen=new Set();
+    form.querySelectorAll('[data-label]').forEach(el=>{
+      if(el.disabled || seen.has(el.name) || /^data[1-3]$|^ora[1-3]$/.test(el.name))return;
+      seen.add(el.name);
+      if(el.type==='checkbox'){
+        const values=Array.from(form.elements).filter(x=>x.name===el.name && x.checked && !x.disabled).map(x=>x.value);
+        if(values.length)lines.push(el.dataset.label+': '+values.join(', '));
+      }else if(el.value.trim())lines.push(el.dataset.label+': '+el.value.trim());
+    });
+    for(let i=1;i<=3;i++){const date=form.elements['data'+i].value,time=form.elements['ora'+i].value;if(date)lines.push('Disponibilità sopralluogo '+i+': '+date.split('-').reverse().join('/')+' · '+time);}
+    return 'Buongiorno, vorrei un preventivo per l’installazione di una wallbox.\n\n'+lines.join('\n')+'\n\nResto in attesa di un vostro contatto.';
+  }
+  form.addEventListener('input',()=>{for(let i=1;i<=3;i++){form.elements['data'+i].setCustomValidity('');form.elements['ora'+i].setCustomValidity('');}status.textContent='';});
+  root.querySelector('[data-whatsapp]').onclick=()=>{
+    status.textContent='';
+    if(!/^[1-9]\d{6,14}$/.test(NUMERO_WHATSAPP)){status.textContent='Il canale WhatsApp non è ancora configurato. Inserire il numero dello studio nel codice del modulo.';return;}
+    const text=message();if(text===null)return;
+    window.location.href='https://wa.me/'+NUMERO_WHATSAPP+'?text='+encodeURIComponent(OGGETTO+'\n\n'+text);
+  };
+  root.querySelector('[data-email]').onclick=()=>{
+    status.textContent='';
+    if(!/^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(EMAIL_DESTINATARIO)){status.textContent='Il canale email non è ancora configurato. Inserire l’indirizzo dello studio nel codice del modulo.';return;}
+    const text=message();if(text===null)return;
+    window.location.href='mailto:'+EMAIL_DESTINATARIO+'?subject='+encodeURIComponent(OGGETTO)+'&body='+encodeURIComponent(text);
+  };
+})();
+</script>
+</body>
+</html>
