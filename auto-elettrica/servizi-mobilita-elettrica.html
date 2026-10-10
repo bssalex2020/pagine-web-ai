@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f2">
+  <meta name="description" content="Una selezione di servizi per l'energia di casa e la ricarica dell'auto elettrica o ibrida plug-in.">
+  <title>Energia e ricarica | Mobilità elettrica</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172522;
+      --muted: #64716b;
+      --paper: #f5f6f2;
+      --white: #fff;
+      --green: #c9f36a;
+      --green-dark: #183d31;
+      --line: #e7ebe4;
+      --shadow: 0 22px 55px rgba(23, 37, 34, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .page { overflow: hidden; }
+    .topbar {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      color: var(--green-dark);
+      background: var(--green);
+    }
+    .top-link {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+    }
+    .top-link:hover { color: var(--ink); }
+    .hero-wrap {
+      width: min(1160px, calc(100% - 48px));
+      margin: 14px auto 0;
+    }
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 388px;
+      padding: clamp(34px, 6vw, 76px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 30px;
+      background:
+        radial-gradient(ellipse at 82% 14%, rgba(201,243,106,.21), transparent 30%),
+        linear-gradient(120deg, #142d27 0%, #1e4035 57%, #234b3a 100%);
+      color: #fff;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 370px;
+      height: 370px;
+      right: 8%;
+      top: 50%;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 45px rgba(255,255,255,.025), 0 0 0 90px rgba(255,255,255,.02);
+    }
+    .hero-copy { max-width: 660px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px;
+      color: #d8eeaa;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 23px;
+      height: 2px;
+      border-radius: 3px;
+      background: var(--green);
+    }
+    h1 {
+      max-width: 630px;
+      margin: 0;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: .99;
+      letter-spacing: -.065em;
+      font-weight: 750;
+    }
+    h1 span { color: var(--green); }
+    .hero-copy > p {
+      max-width: 520px;
+      margin: 22px 0 0;
+      color: rgba(255,255,255,.75);
+      font-size: clamp(15px, 1.8vw, 18px);
+      line-height: 1.65;
+    }
+    .hero-bottom {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 31px;
+    }
+    .hero-bottom a {
+      display: inline-flex;
+      min-height: 47px;
+      align-items: center;
+      gap: 10px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--green);
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .hero-bottom a:hover { transform: translateY(-2px); background: #d7fb8a; }
+    .hero-bottom .hint { color: rgba(255,255,255,.6); font-size: 12px; }
+    .hero-orbit {
+      position: absolute;
+      right: 13%;
+      top: 50%;
+      display: grid;
+      place-items: center;
+      width: 170px;
+      height: 170px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      color: var(--green);
+      transform: translateY(-50%);
+    }
+    .hero-orbit svg { width: 74px; height: 74px; }
+    .section {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 75px 0 78px;
+    }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 27px;
+    }
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(27px, 3.5vw, 39px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+    .section-heading p {
+      max-width: 350px;
+      margin: 0 0 3px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+    .card {
+      min-height: 335px;
+      display: flex;
+      flex-direction: column;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--white);
+      box-shadow: 0 5px 18px rgba(23,37,34,.025);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #d4e5bf;
+      box-shadow: var(--shadow);
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: #eff7df;
+      color: #234b3a;
+    }
+    .icon-box svg { width: 26px; height: 26px; }
+    .number {
+      padding-top: 5px;
+      color: #a1aaa4;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .category {
+      display: inline-flex;
+      width: fit-content;
+      margin: 25px 0 10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f3f5f1;
+      color: #59665f;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .card h3 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.12;
+      letter-spacing: -.045em;
+    }
+    .card p {
+      margin: 11px 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .card-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .arrow {
+      display: grid;
+      flex: 0 0 31px;
+      width: 31px;
+      height: 31px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      transition: transform .18s ease;
+    }
+    .card-cta:hover .arrow { transform: translateX(3px); }
+    .note {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-top: 20px;
+      padding: 16px 19px;
+      border-radius: 15px;
+      background: #eaf0e6;
+      color: #48564f;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .note svg { flex: 0 0 19px; color: #45634e; }
+    footer {
+      border-top: 1px solid #e2e7df;
+      padding: 22px 24px 28px;
+      color: #78837c;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: .025em;
+    }
+    @media (max-width: 850px) {
+      .hero { min-height: 365px; }
+      .hero-orbit { right: 6%; width: 125px; height: 125px; opacity: .65; }
+      .hero-orbit svg { width: 54px; height: 54px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 285px; }
+    }
+    @media (max-width: 560px) {
+      .topbar, .hero-wrap, .section { width: min(100% - 30px, 1160px); }
+      .topbar { min-height: 68px; }
+      .brand { font-size: 10px; }
+      .top-link { font-size: 11px; }
+      .hero-wrap { margin-top: 8px; }
+      .hero { min-height: 415px; padding: 32px 25px; border-radius: 23px; align-items: flex-start; }
+      .hero::after { width: 250px; height: 250px; right: -80px; top: 78%; }
+      .hero-orbit { top: auto; bottom: 18px; right: 25px; width: 84px; height: 84px; transform: none; }
+      .hero-orbit svg { width: 39px; height: 39px; }
+      .hero-copy { position: relative; z-index: 1; }
+      .hero-copy > p { max-width: 400px; }
+      .hero-bottom { align-items: flex-start; flex-direction: column; }
+      .section { padding: 54px 0 58px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 11px; }
+      .card { padding: 23px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#inizio" aria-label="Vai all'inizio della pagina">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none"><path d="M13.5 2.8 5.7 13h5.5l-.7 8.2L18.4 11h-5.7l.8-8.2Z" fill="currentColor"/></svg>
+        </span>
+        <span>Mobilità elettrica</span>
+      </a>
+      <a class="top-link" href="#servizi">Esplora i servizi <span aria-hidden="true">↓</span></a>
+    </header>
+
+    <main id="inizio">
+      <div class="hero-wrap">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Energia · Ricarica · Mobilità</p>
+            <h1 id="hero-title">La tua ricarica,<br><span>più semplice.</span></h1>
+            <p>Una selezione di servizi per accompagnarti dall’energia di casa alle soste di ricarica, con soluzioni per auto elettriche e ibride plug-in.</p>
+            <div class="hero-bottom">
+              <a href="#servizi">Scopri i servizi <span aria-hidden="true">↓</span></a>
+              <span class="hint">Tre modi per vivere la mobilità elettrica</span>
+            </div>
+          </div>
+          <div class="hero-orbit" aria-hidden="true">
+            <svg viewBox="0 0 80 80" fill="none"><path d="M43.5 7 20 42h17l-3 31 26-39H42l1.5-27Z" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><circle cx="40" cy="40" r="37" stroke="white" stroke-opacity=".2"/></svg>
+          </div>
+        </section>
+      </div>
+
+      <section class="section" id="servizi" aria-labelledby="services-title">
+        <div class="section-heading">
+          <h2 id="services-title">Scegli da dove partire</h2>
+          <p>Soluzioni diverse, un unico obiettivo: rendere più comoda la ricarica nella vita di tutti i giorni.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-head">
+              <div class="icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M13 2.8 5.5 13h5.4l-.7 8.2L18.5 11h-5.6l.1-8.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="number">01 / 03</span>
+            </div>
+            <span class="category">Energia di casa</span>
+            <h3>Octopus Energy</h3>
+            <p>Contratti luce e gas con servizi di ricarica intelligente Smart: esplora l’offerta dedicata all’energia e alla tua auto.</p>
+            <a class="card-cta" href="https://bssalex2020.github.io/shopping-page/energia-economica.html" target="_blank" rel="noopener noreferrer">
+              <span>Scopri Octopus Energy</span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div class="icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M9.8 14.8h4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </div>
+              <span class="number">02 / 03</span>
+            </div>
+            <span class="category">Ricarica pubblica</span>
+            <h3>Electra &amp; Octopus Electroverse</h3>
+            <p>Scopri le colonnine di ricarica pubblica e le soluzioni Electra ed Electroverse per i tuoi spostamenti.</p>
+            <a class="card-cta" href="https://bssalex2020.github.io/shopping-page/ricarica-auto-elettrica.html" target="_blank" rel="noopener noreferrer">
+              <span>Esplora la ricarica pubblica</span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div class="icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M7 8V5.8A2.8 2.8 0 0 1 9.8 3h4.4A2.8 2.8 0 0 1 17 5.8V8M5 8h14v9.3A3.7 3.7 0 0 1 15.3 21H8.7A3.7 3.7 0 0 1 5 17.3V8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M17 10h2.5a2.5 2.5 0 0 1 0 5H17" stroke="currentColor" stroke-width="1.7"/></svg>
+              </div>
+              <span class="number">03 / 03</span>
+            </div>
+            <span class="category">Mobilità elettrica</span>
+            <h3>&amp;Charge</h3>
+            <p>Il tuo compagno di mobilità elettrica: un’esperienza di ricarica pensata per essere più economica, affidabile e piacevole.</p>
+            <a class="card-cta" href="https://bssalex2020.github.io/shopping-page/invito-and-charge.html" target="_blank" rel="noopener noreferrer">
+              <span>Scopri &amp;Charge</span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </article>
+        </div>
+
+        <aside class="note">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 10.7v5M12 7.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Aprendo una scheda puoi consultare i dettagli del servizio direttamente nella pagina dedicata.</span>
+        </aside>
+      </section>
+    </main>
+
+    <footer>Energia e ricarica, in un unico posto.</footer>
+  </div>
+</body>
+</html>
